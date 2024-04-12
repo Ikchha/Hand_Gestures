@@ -21,3 +21,57 @@ Webcam.set(
     
     classifier =
     ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/PCEqRo8V8/model.json',modelLoaded);
+
+    function modelLoaded()
+{
+    console.log("modelLoaded");
+}
+
+function check()
+{
+    img = document.getElementById('captured_image');
+    classifier.classify(img , gotResult);
+    
+}
+
+function speak()
+{
+   var synth = window.speechSynthesis;
+   speak_data = toSpeak;
+   var utterThis = new SpeechSynthesisUtterance(speak_data);
+   synth.speak(utterThis);
+}
+
+function gotResult(error , results)
+{
+    if(error)
+    { 
+        console.error(error);
+    }
+    else 
+    {
+        console.log(results);
+        document.getElementById("result_object_name").innerHTML = results[0].label;
+        gesture = results[0].label;
+        toSpeak = " ";
+    
+        if(gesture == "Ok")
+        {
+            toSpeak = "This is looking OK!"
+            document.getElementById("result_object_gesture_icon").innerHTML = "&#128076;";
+        }
+        else if(gesture == "ThumbsUp")
+        {
+            toSpeak = "This is looking All the best!"
+            document.getElementById("result_object_gesture_icon").innerHTML = "&#128077;";
+        }
+        else if(gesture == "swag")
+        {
+            toSpeak = "This is looking Swag!"
+            document.getElementById("result_object_gesture_icon").innerHTML = "&#33396;";
+        }
+        speak();
+
+    }
+    
+}
