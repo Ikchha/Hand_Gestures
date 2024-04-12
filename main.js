@@ -62,13 +62,13 @@ function gotResult(error , results)
         }
         else if(gesture == "ThumbsUp")
         {
-            toSpeak = "This is looking All the best!"
+            toSpeak = "This is looking Thumbs Up!"
             document.getElementById("result_object_gesture_icon").innerHTML = "&#128077;";
         }
         else if(gesture == "swag")
         {
             toSpeak = "This is looking Swag!"
-            document.getElementById("result_object_gesture_icon").innerHTML = "&#33396;";
+            document.getElementById("result_object_gesture_icon").innerHTML = "&#129304;";
         }
         speak();
 
